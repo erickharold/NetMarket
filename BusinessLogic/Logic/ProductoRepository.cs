@@ -32,7 +32,7 @@ namespace BusinessLogic.Logic
                                  .Include(p => p.Marca)
                                  .Include(p => p.Categoria)
                                  .FirstOrDefaultAsync(p => p.Id == id);
-             //FindAsync(id);
+            //FindAsync(id);
 
             //COMNETANDO FIN
         }
