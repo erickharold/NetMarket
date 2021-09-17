@@ -9,12 +9,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApi.Dtos;
+using WebApi.Errors;
 
 namespace WebApi.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ProductoController : ControllerBase
+    public class ProductoController : BaseApiController
     {
 
         //private readonly IProductoRepository _productoRepository;
@@ -50,11 +49,14 @@ namespace WebApi.Controllers
         {
 
             //INCLUIR LAS RELACIONES DE LAS ENTIDAS MARCA - CATEGORIA Y LA LOGICA DE LA CONDICION
-
-
             var spec = new ProductoWithCategoriaAndMarca(id);
-            
             var producto = await _productoRepository.GetByIdWithSpec(spec);
+
+
+            if(producto == null)
+            {
+                return NotFound(new CodeErrorResponse(404, "El producto no exite"));
+            }
 
             return _mapper.Map<Producto, ProductoDto>(producto);
 

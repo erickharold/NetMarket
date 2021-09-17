@@ -10,9 +10,9 @@ using Core.Interfaces;
 
 namespace WebApi.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class CategoriaController : ControllerBase
+    //[Route("api/[controller]")]
+    //[ApiController]
+    public class CategoriaController : BaseApiController
     {
         private readonly IGenericRepository<Categoria> _categoriaRepository;
 
