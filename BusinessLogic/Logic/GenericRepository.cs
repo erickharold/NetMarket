@@ -49,6 +49,10 @@ namespace BusinessLogic.Logic
         {
             return SpecificationEvaluator<T>.GetQuery(_context.Set<T>().AsQueryable(), specifications);
         }
-        
+
+        public async Task<int> CountAsync(ISpecifications<T> spec)
+        {
+            return await ApplySpecification(spec).CountAsync();
+        }
     }
 }
